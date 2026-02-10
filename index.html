@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nomira — Gestionale operativo</title>
 
-  <meta name="description" content="Nomira è il gestionale operativo per attività di sanificazione, car detailing e servizi sul campo. Tracciabilità, ordine, controllo." />
+  <meta name="description" content="Nomira è il gestionale operativo per attività di sanificazione, car detailing e servizi sul campo." />
 
   <style>
     :root {
@@ -36,22 +36,21 @@
 
     header { margin-bottom: 44px; }
 
-    /* Logo */
     .brand {
       display: block;
       width: min(720px, 100%);
       height: auto;
-      margin: 0;
     }
 
-    main h1 {
+    h1 {
       font-size: 40px;
       line-height: 1.15;
       margin: 10px 0 16px;
       letter-spacing: -0.02em;
+      white-space: nowrap;
     }
 
-    main p.lead {
+    p.lead {
       font-size: 20px;
       color: var(--muted);
       margin-bottom: 34px;
@@ -75,7 +74,6 @@
       content: "•";
       position: absolute;
       left: 0;
-      opacity: 0.9;
     }
 
     .cta {
@@ -87,23 +85,19 @@
       font-weight: 700;
       text-decoration: none;
       border-radius: 6px;
-      transition: transform 0.12s ease, opacity 0.2s ease;
     }
-
-    .cta:hover { opacity: 0.9; transform: translateY(-1px); }
 
     footer {
       margin-top: 64px;
       font-size: 14px;
       color: var(--muted);
-      opacity: 0.9;
     }
 
     @media (max-width: 600px) {
-      .container { padding: 44px 18px; }
-      main h1 { font-size: 30px; }
-      main p.lead { font-size: 18px; }
-      ul.features li { font-size: 16px; }
+      h1 {
+        font-size: 28px;
+        white-space: normal;
+      }
     }
   </style>
 </head>
@@ -114,7 +108,7 @@
     </header>
 
     <main>
-      <h1>Il gestionale operativo<br>per chi lavora sul campo.</h1>
+      <h1>Il gestionale operativo per chi lavora sul campo.</h1>
 
       <p class="lead">
         Nomira rende il lavoro tracciabile, ordinato e verificabile.
