@@ -32,8 +32,8 @@
 
     .container {
       max-width: 1240px;
-      padding: 40px 24px;
       width: 100%;
+      padding: 56px 24px;
     }
 
     .layout{
@@ -41,13 +41,17 @@
       grid-template-columns: 1.05fr 0.95fr;
       gap: 46px;
       align-items: center;
+
+      /* richiesta: "tutto leggermente più a destra" */
+      padding-left: 34px;
     }
 
     header { margin-bottom: 44px; }
 
+    /* richiesta: logo leggermente più piccolo */
     .brand {
       display: block;
-      width: min(550px, 100%);
+      width: min(640px, 100%);
       height: auto;
     }
 
@@ -96,12 +100,15 @@
       border-radius: 6px;
     }
 
-    /* Dashboard preview (right side) */
+    /* RIGHT: dashboard preview */
     .shot {
       display: flex;
       flex-direction: column;
       align-items: stretch;
       justify-content: center;
+
+      /* richiesta: screenshot più in basso */
+      margin-top: 70px;
     }
 
     .shot-title{
@@ -125,8 +132,11 @@
       display: block;
       width: 100%;
       height: auto;
-      max-height: 620px;
+
+      /* richiesta: screenshot circa +25% */
+      max-height: 650px;
       object-fit: contain;
+
       border-radius: 10px;
     }
 
@@ -189,13 +199,22 @@
       .layout{
         grid-template-columns: 1fr;
         gap: 28px;
+
+        /* su mobile niente shift a destra */
+        padding-left: 0;
       }
       h1 {
         font-size: 28px;
         white-space: normal;
       }
+      .shot{
+        margin-top: 0;
+      }
       .shot-card img{
         max-height: 520px;
+      }
+      .brand{
+        width: min(720px, 100%);
       }
     }
   </style>
