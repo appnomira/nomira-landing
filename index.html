@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nomira — Gestionale operativo</title>
 
-  <meta name="description" content="Nomira è il gestionale operativo per attività di sanificazione, car detailing e servizi sul campo." />
+  <meta name="description" content="Nomira è il gestionale operativo per attività operative e servizi sul campo." />
 
   <style>
     :root {
@@ -31,28 +31,28 @@
     .container {
       max-width: 1240px;
       width: 100%;
-      padding: 45px 24px;
+      padding: 60px 24px;
     }
 
     .layout{
       display: grid;
       grid-template-columns: 1.05fr 0.95fr;
-      gap: 46px;
+      gap: 60px;
       align-items: start;
     }
 
-    header { margin-bottom: 44px; }
+    header { margin-bottom: 40px; }
 
     .brand {
       display: block;
-      width: min(640px, 100%);
+      width: min(600px, 100%);
       height: auto;
     }
 
     h1 {
       font-size: 40px;
       line-height: 1.15;
-      margin: 10px 0 16px;
+      margin: 20px 0 16px;
       letter-spacing: -0.02em;
       white-space: nowrap;
     }
@@ -94,7 +94,7 @@
       border-radius: 6px;
     }
 
-    /* Screenshot posizionato come richiesto */
+    /* Screenshot area */
     .shot {
       margin-top: 420px;
     }
@@ -105,11 +105,18 @@
       margin-bottom: 12px;
     }
 
+    .shot-card{
+      cursor: pointer;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
     .shot-card img{
+      display: block;
       width: 85%;
       height: auto;
-      border-radius: 12px;
-      box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+      border-radius: 14px;
     }
 
     .shot-hint{
@@ -124,6 +131,49 @@
       color: var(--muted);
     }
 
+    /* Modal */
+    .modal{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.82);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index:9999;
+      padding:24px;
+    }
+    .modal.open{display:flex}
+    .modal-inner{
+      width:min(1400px,96vw);
+      height:min(92vh,900px);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:relative;
+    }
+    .modal-inner img{
+      max-width:100%;
+      max-height:100%;
+      border-radius:14px;
+      box-shadow:0 22px 60px rgba(0,0,0,.6);
+    }
+    .modal-close{
+      position:absolute;
+      top:-10px;
+      right:-10px;
+      width:44px;
+      height:44px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.22);
+      background:rgba(15,23,42,.75);
+      color:#fff;
+      font-size:22px;
+      line-height:44px;
+      text-align:center;
+      cursor:pointer;
+      user-select:none;
+    }
+
     @media (max-width: 980px) {
       .layout{
         grid-template-columns: 1fr;
@@ -136,38 +186,39 @@
       .shot{
         margin-top: 40px;
       }
+      .shot-card img{
+        width: 100%;
+      }
     }
   </style>
 </head>
 <body>
   <div class="container">
     <div class="layout">
-      <div class="left">
+      <div>
         <header>
           <img class="brand" src="logo_nomira.png" alt="Nomira" />
         </header>
 
-        <main>
-          <h1>Il gestionale operativo per chi lavora sul campo.</h1>
+        <h1>Il gestionale operativo per chi lavora sul campo.</h1>
 
-          <p class="lead">
-            Nomira rende il lavoro tracciabile, ordinato e verificabile.
-            Un sistema semplice per gestire interventi, attività e operatività quotidiana.
-          </p>
+        <p class="lead">
+          Nomira rende il lavoro tracciabile, ordinato e verificabile.
+          Un sistema semplice per gestire interventi, attività e operatività quotidiana.
+        </p>
 
-          <ul class="features">
-            <li>Registra ogni intervento in modo chiaro</li>
-            <li>Organizza attività, operatori e mezzi</li>
-            <li>Trasforma il lavoro in dati consultabili</li>
-          </ul>
+        <ul class="features">
+          <li>Registra ogni intervento in modo chiaro</li>
+          <li>Organizza attività, operatori e mezzi</li>
+          <li>Trasforma il lavoro in dati consultabili</li>
+        </ul>
 
-          <a class="cta" href="mailto:info@nomira.it?subject=Richiesta demo Nomira">Richiedi una demo</a>
-        </main>
+        <a class="cta" href="mailto:info@nomira.it?subject=Richiesta demo Nomira">Richiedi una demo</a>
       </div>
 
       <div class="shot">
         <div class="shot-title">Dentro Nomira (anteprima)</div>
-        <div class="shot-card">
+        <div class="shot-card" id="shotCard" role="button" tabindex="0">
           <img src="dashboard_nomira.png" alt="Dashboard Nomira" />
         </div>
         <div class="shot-hint">Clicca sull’immagine per ingrandire.</div>
@@ -176,5 +227,40 @@
 
     <footer>© Nomira — Software operativo</footer>
   </div>
+
+  <div class="modal" id="modal">
+    <div class="modal-inner">
+      <div class="modal-close" id="modalClose">×</div>
+      <img src="dashboard_nomira.png" alt="Dashboard Nomira ingrandita" />
+    </div>
+  </div>
+
+  <script>
+    const modal = document.getElementById('modal');
+    const shotCard = document.getElementById('shotCard');
+    const modalClose = document.getElementById('modalClose');
+
+    function openModal(){
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(){
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    shotCard.addEventListener('click', openModal);
+    modalClose.addEventListener('click', closeModal);
+
+    modal.addEventListener('click', (e) => {
+      if(e.target === modal) closeModal();
+    });
+
+    window.addEventListener('keydown', (e) => {
+      if(e.key === 'Escape') closeModal();
+    });
+  </script>
+
 </body>
 </html>
