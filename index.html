@@ -125,14 +125,16 @@
       border: none;
       border-radius: 16px;
       padding: 0;
-      box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.45);
+      width: fir-content; /* IMPORTANTISSIMO: la card si stringe all’immagine */
       cursor: pointer;
       transition: transform .22s ease;
     }
     .shot-card:hover{ transform: scale(1.01); }
 
     .shot-card img{
-      display: block;
+      display: flex;
+      justify-content: flex-start; /* resta dov'è ora */
       width: 72%;
       height: auto;
 
