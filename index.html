@@ -34,12 +34,13 @@
       max-width: 1240px;
       width: 100%;
       padding: 45px 24px;
+      padding-left: calc(24px + 40px);  /* stesso “shift” di prima, ma globale */
     }
 
     .layout{
       display: grid;
       grid-template-columns: 1.05fr 0.95fr;
-      gap: 46px;
+      gap: 40px;
       align-items: start;
 
       /* richiesta: "tutto leggermente più a destra" */
@@ -132,7 +133,7 @@
 
     .shot-card img{
       display: block;
-      width: 100%;
+      width: 72%;
       height: auto;
 
       /* richiesta: screenshot circa +25% */
